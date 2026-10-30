@@ -1,0 +1,15 @@
+{
+  "entities": {
+    "pinned_runs": {
+      "fields": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "config": { "type": "object" },
+        "actualTestMAE": { "type": "number" },
+        "actualTestRMSE": { "type": "number" },
+        "savedAt": { "type": "timestamp" }
+      }
+    }
+  }
+}
