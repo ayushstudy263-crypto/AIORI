@@ -1,13 +1,29 @@
-## AIORI — Federated Traffic Intelligence Suite
+# Flow Forge — AIORI Federated Traffic Intelligence Suite
 
-> **PS-003** · Federated Learning on METR-LA Dataset  
-> Real-time traffic forecasting with privacy-preserving edge AI
+**Hackathon:** AIORI Hackathon 3  
+**Problem Statement:** PS-003 — Federated Traffic-Flow Prediction with Communication-Cost Evaluation  
+**Category:** Smart Cities  
+**Team:** Flow Forge
+
+## Team
+
+| Name | Email |
+|------|-------|
+| Ayush Rastogi | ayushstudy263@gmail.com |
+| Purvi Jain | purvijain22jul2006@gmail.com |
+| Dr. Atul Srivastava | asrivastava5@lko.amity.edu |
+
+## Intro Video
+- **Complete description of the problem statement:** https://youtu.be/5wjOAO3cRCo
+- **Short description of the problem statement:** https://youtu.be/RWwwxcE9wKE
 
 ---
 
-### 🧠 What is AIORI?
+### 🧠 Overview & What is AIORI?
 
-AIORI is a full-stack federated learning simulation platform for intelligent traffic systems. It simulates how 4 RSU (Roadside Unit) edge nodes collaboratively train GRU/TCN/MLP-Mixer/ST-GNN models on the METR-LA highway sensor dataset — **without any raw data ever leaving the edge**.
+Flow Forge explores federated learning for road-traffic forecasting. It simulates a full-stack federated learning simulation platform where 4 RSU (Roadside Unit) edge nodes collaboratively train GRU/TCN/MLP-Mixer/ST-GNN models on the METR-LA highway sensor dataset using Federated Averaging (FedAvg) — **without raw data ever leaving the edge**.
+
+The platform provides interactive 3D digital twins, communication cost & byte payload evaluation, Dirichlet non-IID data partitioning, and real-time cloud sync.
 
 ---
 
@@ -15,9 +31,10 @@ AIORI is a full-stack federated learning simulation platform for intelligent tra
 
 | Feature | Description |
 |--------|-------------|
-| 🌐 **3D Digital Twin** | Procedural Three.js highway + RSU node visualization |
-| 📊 **Live Forecast Dashboard** | Real-time METR-LA traffic speed predictions |
-| 🔬 **Heatmap & Shard Studio** | Non-IID Dirichlet data distribution visualizer |
+| 🌐 **3D Digital Twin** | Procedural Three.js highway + RSU edge node traffic visualization |
+| 📊 **Live Forecast Dashboard** | Real-time METR-LA traffic speed predictions (GRU, TCN, MLP-Mixer, ST-GNN) |
+| 🔬 **Heatmap & Shard Studio** | Non-IID Dirichlet distribution visualizer across simulated clients |
+| 📡 **Communication Cost Analysis**| Serialization payload tracking, cumulative bytes, and bandwidth efficiency metrics |
 | ⚖️ **Simulation Comparison** | Side-by-side benchmark pinning & cloud sync |
 | 🌸 **Flower FedLLM Studio** | Federated LLM traffic reasoning (FlowerTune) |
 | 🎙️ **Gemini Live AI** | Voice & text AI dispatch assistant powered by Gemini 3.8 |
@@ -98,39 +115,47 @@ To enable cloud saving and synchronization of simulation runs:
 
 ---
 
-### 🚀 Deployment
-
-#### Deploy to Vercel (Recommended)
+### 🚀 Deployment to Vercel
 
 The project includes pre-configured [vercel.json](./vercel.json) and serverless endpoints in [`api/`](./api).
 
-##### Option 1: Via Vercel CLI
+#### Option 1: Via Vercel CLI
 ```bash
-# Install Vercel CLI globally if not already installed
 npm i -g vercel
-
-# Deploy
 vercel
 ```
 
-##### Option 2: Via GitHub Import
+#### Option 2: Via GitHub Import
 1. Push your repository to GitHub.
 2. Go to [Vercel Dashboard](https://vercel.com/new) and import your repo.
-3. In **Environment Variables**, add:
+3. Under **Environment Variables**, add:
    - `GEMINI_API_KEY`
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_ANON_KEY`
-4. Click **Deploy**. Vercel will automatically run `npm run vercel-build` and serve the client app and serverless API functions.
+4. Click **Deploy**.
+
+---
+
+### 📁 Repository Contents
+
+| File / Directory | Description |
+|------------------|-------------|
+| `Proposed-structure-hackathon.pdf` | Hackathon presentation following the AIORI proposed structure |
+| `src/` | Full-stack React + Three.js application source code |
+| `api/` | Vercel serverless function endpoints |
+| `supabase/` | Supabase SQL migration schema |
+| `README.md` | Comprehensive project overview, setup, and evaluation guide |
+
+---
+
+### 🔬 Research Reference & Scope
+
+- **Dataset:** [METR-LA](https://github.com/liyaguang/DCRNN) — 207 loop detectors, Los Angeles Caltrans District 7.
+- **Federated Reference:** McMahan et al., [Communication-Efficient Learning of Deep Networks from Decentralized Data](https://proceedings.mlr.press/v54/mcmahan17a.html), AISTATS 2017.
+- **Scope Note:** The core benchmark uses METR-LA sensor speed readings. Communication cost models payload size of serialized weights and gradient updates.
 
 ---
 
 ### 📄 License
 
 MIT — see [LICENSE](./LICENSE)
-
----
-
-### 🔬 Research Reference
-
-Based on **PS-003**: *Federated Learning for Privacy-Preserving Traffic Forecasting using METR-LA*  
-Dataset: [METR-LA](https://github.com/liyaguang/DCRNN) — 207 loop detectors, LA Caltrans District 7
