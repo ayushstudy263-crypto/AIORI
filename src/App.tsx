@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { TrafficIntroAnimation } from './components/TrafficIntroAnimation';
@@ -784,6 +785,9 @@ export function App() {
         onClose={() => setIsPseudocodeOpen(false)}
         config={config}
       />
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
 
     </div>
   );
