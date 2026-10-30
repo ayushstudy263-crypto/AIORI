@@ -15,23 +15,17 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { 
-  auth, 
-  ensureAuthenticated, 
-  db 
-} from '../services/firebase';
-import { 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  signOut, 
-  onAuthStateChanged,
-  User as FirebaseUser
-} from 'firebase/auth';
+  supabase, 
+  signInWithGoogle as supabaseSignInWithGoogle, 
+  logOut as supabaseLogOut,
+  SupabaseUser
+} from '../services/supabase';
 
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  currentUser: FirebaseUser | null;
-  onUserChange?: (user: FirebaseUser | null) => void;
+  currentUser: SupabaseUser | null;
+  onUserChange?: (user: SupabaseUser | null) => void;
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({
@@ -47,16 +41,13 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Real Google Sign-in with Firebase Auth
+  // Real Google Sign-in with Supabase Auth
   const handleGoogleSignIn = async () => {
     setLoading(true);
     setErrorMsg(null);
     try {
-      const provider = new GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      const result = await signInWithPopup(auth, provider);
-      if (onUserChange) onUserChange(result.user);
+      const user = await supabaseSignInWithGoogle();
+      if (onUserChange && user) onUserChange(user);
       setLoading(false);
       onClose();
     } catch (err: any) {
@@ -79,7 +70,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const handleSignOut = async () => {
     setLoading(true);
     try {
-      await signOut(auth);
+      await supabaseLogOut();
       if (onUserChange) onUserChange(null);
     } catch (err) {
       console.warn('Sign-out error:', err);
@@ -103,7 +94,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <div>
               <h3 className="text-sm font-bold">Research Authentication & Access</h3>
               <p className="text-[11px] text-cyan-100">
-                Google Cloud & Firebase Secured Identity
+                Google Cloud & Supabase Secured Identity
               </p>
             </div>
           </div>
@@ -237,7 +228,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
               )}
 
               <p className="text-[10px] text-center text-slate-400">
-                Connected to Firebase Firestore & Google Cloud SQL (asia-southeast1)
+                Connected to Supabase PostgreSQL & Google Cloud (asia-southeast1)
               </p>
             </div>
           )}

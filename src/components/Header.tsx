@@ -10,14 +10,14 @@ import {
 } from 'lucide-react';
 import { SupportedLanguage, SUPPORTED_LANGUAGES, getTranslation } from '../services/i18n';
 import { GoogleAccountMenu } from './GoogleAccountMenu';
-import { User as FirebaseUser } from 'firebase/auth';
+import { SupabaseUser } from '../services/supabase';
 import { SimulationConfig } from '../types/federated';
 import { DataLeakageAuditBadge } from './DataLeakageAuditBadge';
 
 interface HeaderProps {
   currentLanguage: SupportedLanguage;
   onOpenLanguage: () => void;
-  currentUser: FirebaseUser | null;
+  currentUser: SupabaseUser | null;
   onOpenMobileOtpModal: () => void;
   onUserLogin?: (user: any) => void;
   onOpenDocs?: () => void;

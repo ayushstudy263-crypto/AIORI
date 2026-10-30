@@ -18,7 +18,7 @@ export default defineConfig({
         manualChunks: {
           'vendor-react': ['react', 'react-dom'],
           'vendor-three': ['three'],
-          'vendor-firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          'vendor-supabase': ['@supabase/supabase-js'],
           'vendor-gemini': ['@google/genai'],
         },
       },

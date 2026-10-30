@@ -25,7 +25,7 @@ import {
   Download,
   Code2
 } from 'lucide-react';
-import { User as FirebaseUser } from 'firebase/auth';
+import { SupabaseUser } from '../services/supabase';
 import { SupportedLanguage, SUPPORTED_LANGUAGES, getTranslation } from '../services/i18n';
 import { ColabEnhancedMetrics } from './GoogleColabModal';
 
@@ -47,7 +47,7 @@ interface SidebarProps {
   currentLanguage: SupportedLanguage;
   colabEnhancedMetrics?: ColabEnhancedMetrics | null;
   onTriggerError: (type: '404' | 'security' | 'downtime') => void;
-  currentUser: FirebaseUser | null;
+  currentUser: SupabaseUser | null;
   pinnedRunCount: number;
 }
 

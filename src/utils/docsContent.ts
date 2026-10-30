@@ -196,7 +196,7 @@ dynamically switch upon selection, with preference persisted in localStorage.
 --------------------------------------------------------------------------------
 4. AUTHENTICATION & SECURE USER ACCOUNTS
 --------------------------------------------------------------------------------
-- Google Account Authentication: Firebase Authentication integration for 1-click Google sign-in.
+- Google Account Authentication: Supabase Authentication integration for 1-click Google sign-in.
 - Account Profile & Mobile OTP Modal:
   Users can link their phone number with a simulated 6-digit OTP verification code,
   enter researcher name and organization location, and view permission credentials.
@@ -326,8 +326,8 @@ AIORI PS-003 formulates traffic-flow forecasting as a **Decentralized Federated 
 | **Styling & Design** | Tailwind CSS | ^4.0.0 | High-density tactical design system (Caltrans ATMS theme) |
 | **3D Graphics Engine** | Three.js | ^0.186.1 | Zero-external-asset procedural WebGL Digital Twin |
 | **Sound Synthesis** | Web Audio API | Native Browser | Zero-file procedural sound design (drone, clicks, chimes) |
-| **Authentication** | Firebase Auth | ^13.1.0 | Google 1-click Sign-in & authorized researcher tokens |
-| **Cloud Database** | Cloud Firestore | ^13.1.0 | Persistent storage for pinned simulation runs & Colab metrics |
+| **Authentication** | Supabase Auth | ^2.49.0 | Google 1-click Sign-in & authorized researcher tokens |
+| **Cloud Database** | Supabase PostgreSQL | ^2.49.0 | Persistent storage for pinned simulation runs & Colab metrics |
 | **Icons & Visuals** | Lucide React | ^0.475.0 | Comprehensive tactical icon toolkit |
 | **Micro-Animations** | Canvas Confetti | ^1.9.4 | Celebration effects for benchmark & training completions |
 
@@ -411,7 +411,7 @@ With alpha = 0.5, RSU-01 (I-405 North) receives 41% high-speed traffic samples, 
 ### Partition 4: Simulation Comparison Studio
 - Pinned Baseline vs Current Run side-by-side comparison.
 - Delta calculation for MAE, RMSE, bandwidth, and training time.
-- Synced to Firebase Firestore.
+- Synced to Supabase PostgreSQL.
 
 ---
 

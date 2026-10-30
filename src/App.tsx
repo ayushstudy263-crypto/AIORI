@@ -27,8 +27,7 @@ import { DataLeakageAuditBadge } from './components/DataLeakageAuditBadge';
 import { SimulationConfig, RoundMetrics } from './types/federated';
 import { METR_LA_DATASET, MODEL_SPECS } from './services/trafficDataService';
 import { FederatedSimulationEngine } from './services/federatedEngine';
-import { savePinnedRunToFirestore, auth } from './services/firebase';
-import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
+import { savePinnedRunToSupabase, onAuthStateChange, SupabaseUser } from './services/supabase';
 import { SupportedLanguage, SUPPORTED_LANGUAGES, getTranslation } from './services/i18n';
 import { 
   LineChart, 
@@ -80,7 +79,7 @@ export function App() {
   });
 
   // 3. Google Authentication State
-  const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
+  const [currentUser, setCurrentUser] = useState<SupabaseUser | null>(null);
   const [isAuthOpen, setIsAuthOpen] = useState<boolean>(false);
 
   // 4. Account Profile & Mobile OTP Modal state
@@ -171,9 +170,9 @@ export function App() {
   // Translation helper
   const t = (key: string) => getTranslation(currentLanguage, key);
 
-  // Listen to Firebase Auth state
+  // Listen to Supabase Auth state
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChange((user) => {
       setCurrentUser(user);
     });
     return () => unsubscribe();
@@ -219,8 +218,8 @@ export function App() {
     setPinnedRun(newPinned);
     setActiveTab('comparison');
 
-    // Persist to Firebase Firestore
-    savePinnedRunToFirestore(newPinned);
+    // Persist to Supabase
+    savePinnedRunToSupabase(newPinned);
   };
 
   const handleClearPinned = () => {

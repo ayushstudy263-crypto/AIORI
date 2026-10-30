@@ -16,12 +16,12 @@ import {
   ExternalLink,
   ChevronRight
 } from 'lucide-react';
-import { User as FirebaseUser } from 'firebase/auth';
-import { signInWithGoogle, logOut } from '../services/firebase';
+import { SupabaseUser } from '../services/supabase';
+import { signInWithGoogle, logOut } from '../services/supabase';
 import { SupportedLanguage, getTranslation } from '../services/i18n';
 
 interface GoogleAccountMenuProps {
-  currentUser: FirebaseUser | null;
+  currentUser: SupabaseUser | null;
   currentLanguage: SupportedLanguage;
   onOpenMobileOtpModal: () => void;
   onUserLogin?: (user: any) => void;
@@ -421,7 +421,7 @@ export const GoogleAccountMenu: React.FC<GoogleAccountMenuProps> = ({
 
           {/* Footer note */}
           <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/60 text-[10px] text-slate-500 flex items-center justify-between">
-            <span className="font-mono">Secure Firebase Auth & Firestore</span>
+            <span className="font-mono">Secure Supabase Auth & PostgreSQL</span>
             <span className="text-emerald-700 font-bold flex items-center gap-1">
               <ShieldCheck className="w-3 h-3" />
               Verified

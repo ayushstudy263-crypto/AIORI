@@ -15,13 +15,13 @@ import {
   Sparkles,
   Smartphone
 } from 'lucide-react';
-import { User as FirebaseUser } from 'firebase/auth';
-import { signInWithGoogle, logOut } from '../services/firebase';
+import { SupabaseUser } from '../services/supabase';
+import { signInWithGoogle, logOut } from '../services/supabase';
 
 interface AccountProfileModalProps {
   isOpen: boolean;
   onClose: () => void;
-  currentUser: FirebaseUser | null;
+  currentUser: SupabaseUser | null;
   onOpenAuth: () => void;
 }
 
@@ -213,7 +213,7 @@ export const AccountProfileModal: React.FC<AccountProfileModalProps> = ({
           {savedSuccess && (
             <div className="p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2 animate-in fade-in">
               <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Account credentials and profile updated successfully in local storage & Firebase.</span>
+              <span>Account credentials and profile updated successfully in local storage & Supabase.</span>
             </div>
           )}
 
